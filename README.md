@@ -60,7 +60,13 @@ print( np.cov(X) )
 
 
 ```python
-# Code here 
+
+import numpy as np
+X = np.array([ [0.1, 0.3, 0.4, 0.8, 0.9],
+               [3.2, 2.4, 2.4, 0.1, 5.5],
+               [10., 8.2, 4.3, 2.6, 0.9]
+             ])
+print( np.cov(X) )# Code here 
 ```
 
     [[ 0.115   0.0575 -1.2325]
@@ -77,6 +83,7 @@ print(np.var(X, axis=1, ddof=1))
 
 ```python
 # Code here 
+print(np.var(X, axis=1, ddof=1))
 ```
 
     [ 0.115  3.757 14.525]
@@ -133,6 +140,15 @@ print(vectors)
 
 ```python
 # Code here 
+from numpy import array
+from numpy.linalg import eig
+# define matrix
+A = array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+print(A)
+# calculate eigendecomposition
+values, vectors = eig(A)
+print(values)
+print(vectors)
 ```
 
     [[1 2 3]
@@ -160,7 +176,11 @@ print(C)
 
 
 ```python
-# Code here 
+# Code here
+B = A.dot(vectors[:, 0])
+print(B)
+C = vectors[:, 0] * values[0]
+print(C)
 ```
 
     [ -3.73863537  -8.46653421 -13.19443305]
@@ -189,6 +209,16 @@ print(B)
 
 ```python
 # Code here 
+from numpy.linalg import inv
+# create matrix from eigenvectors
+Q = vectors
+# create inverse of eigenvectors matrix
+R = inv(Q)
+# create diagonal matrix from eigenvalues
+L = np.diag(values)
+# reconstruct the original matrix
+B = Q.dot(L).dot(R)
+print(B)
 ```
 
     [[1. 2. 3.]
